@@ -23,6 +23,7 @@
 		"multer": "^2.0.1",
 		"nodemailer": "^6.10.1",
 		"prisma": "^6.11.1",
+		"pusher": "^5.2.0",
 		"zod": "^4.0.5"
 	},
 	"devDependencies": {

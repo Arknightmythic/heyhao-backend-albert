@@ -5,6 +5,8 @@ import bodyParser from "body-parser";
 import userRoutes from "./routes/userRoutes";
 import errorHandler from "./middlewares/errorHandler";
 import groupRoutes from "./routes/groupRoutes";
+import transactionRoute from "./routes/transactionRoutes";
+import chatRoutes from "./routes/chatRoutes";
 dotenv.config();
 
 const app: Express = express();
@@ -21,6 +23,8 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use('/api', userRoutes)
 app.use('/api', groupRoutes)
+app.use('/api', transactionRoute)
+app.use('/api', chatRoutes)
 
 app.use(errorHandler)
 

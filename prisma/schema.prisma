@@ -214,5 +214,7 @@ model Payout {
 
   proof String? @db.Text
 
+  created_at DateTime @default(now())
+
   @@map("payouts")
 }

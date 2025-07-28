@@ -6,5 +6,16 @@ export const groupFreeSchema = z.object({
 
 })
 
+export const groupPaidSchema = groupFreeSchema.extend({
+    price: z.string(),
+    benefit:z.array(z.string().min(1))
+})
 
+
+export const joinFreeGroups = z.object({
+    group_id:z.string()
+})
 export type GroupFreeValues =z.infer<typeof groupFreeSchema>
+export type GroupPaidValues = z.infer<typeof groupPaidSchema>
+
+export type JoinFreeGroupValues = z.infer<typeof joinFreeGroups>

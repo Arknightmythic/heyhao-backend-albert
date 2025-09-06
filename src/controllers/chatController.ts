@@ -30,7 +30,7 @@ export const createRoomPersonal = async (
     );
 
     return res.json({
-      succes: true,
+      success: true,
       message: "success to create room",
       data,
     });
@@ -51,7 +51,7 @@ export const getRooms = async (
     );
 
     return res.json({
-      succes: true,
+      success: true,
       message: "success to get rooms",
       data,
     });
@@ -72,7 +72,7 @@ export const getRoomMessages = async (
     );
 
     return res.json({
-      succes: true,
+      success: true,
       message: "success to get messages",
       data,
     });
@@ -109,7 +109,7 @@ export const createMessage = async (
     );
 
     return res.json({
-      succes: true,
+      success: true,
       message: "success to create messages",
       data,
     });

@@ -102,7 +102,7 @@ export const getMyOwngroup = async (userId: string) => {
     }),
     paid_groups: paidGroups,
     free_groups: freeGroups,
-    Total_embers: TotalMembers,
+    Total_members: TotalMembers,
   };
 };
 
@@ -110,13 +110,13 @@ export const addMemberFreeGroups = async (groupId: string, userId: string) => {
   const checkmember = await groupRepositories.getMemberbyId(userId, groupId);
 
   if (checkmember) {
-    throw new Error("you already joined grup");
+    throw new Error("you already joined group");
   }
 
   const group = await groupRepositories.groupFindById(groupId);
 
   if (group.type === "PAID") {
-    throw new Error("this group VIP/Paid");
+    throw new Error("this group is for VIP/Paid members only.");
   }
 
   await groupRepositories.addMemberToGroup(group.room_id, userId);
@@ -126,23 +126,23 @@ export const addMemberFreeGroups = async (groupId: string, userId: string) => {
 
 export const deleteAssetGroup = async (assetId: string) => {
   const asset = await groupRepositories.findAssetGroup(assetId);
-  // if (
-  //   fs.existsSync(
-  //     path.join(
-  //       __dirname,
-  //       "../../public/assets/uploads/groups_assets/",
-  //       asset.filename
-  //     )
-  //   )
-  // ) {
-  //   fs.unlinkSync(
-  //     path.join(
-  //       __dirname,
-  //       "../../public/assets/uploads/groups_assets/",
-  //       asset.filename
-  //     )
-  //   );
-  // }
+  if (
+    fs.existsSync(
+      path.join(
+        __dirname,
+        "../../public/assets/uploads/groups_assets/",
+        asset.filename
+      )
+    )
+  ) {
+    fs.unlinkSync(
+      path.join(
+        __dirname,
+        "../../public/assets/uploads/groups_assets/",
+        asset.filename
+      )
+    );
+  }
 
   const filePath = path.join(
     __dirname,

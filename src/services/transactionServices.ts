@@ -6,7 +6,7 @@ export const createTransaction = async (groupId: string, userId: string) => {
   const checkmember = await groupRepositories.getMemberbyId(userId, groupId);
 
   if (checkmember) {
-    throw new Error("you already joined grup");
+    throw new Error("you already joined group");
   }
 
   const group = await groupRepositories.groupFindById(groupId);
@@ -84,6 +84,14 @@ export const updateTransaction = async (order_id: string, status: string) => {
       return{
         transaction_id:transaction.id
       } 
+    }
+     case "pending": {
+      console.log(`Transaction with order_id: ${order_id} is still pending.`);
+      // Tidak ada perubahan status di database, biarkan tetap 'PENDING'
+      return {
+        message: "Transaction is pending",
+        order_id: order_id,
+      };
     }
 
     case "deny":

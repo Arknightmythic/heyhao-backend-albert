@@ -9,10 +9,10 @@ const uploadPhoto = multer({
   storage: storageUserPhoto,
   fileFilter(req, file, callback) {
     if (file.mimetype.startsWith("image/")) {
+      callback(null, true);
+    } else {
       callback(null, false);
     }
-
-    callback(null, true);
   },
 });
 

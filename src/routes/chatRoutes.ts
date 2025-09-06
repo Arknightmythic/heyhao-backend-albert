@@ -11,9 +11,9 @@ const uploadAttach = multer({
   fileFilter(req, file, callback) {
     if (file.mimetype.startsWith("image/")) {
       callback(null, true);
+    } else {
+      callback(null, false);
     }
-
-    callback(null, false);
   },
 });
 

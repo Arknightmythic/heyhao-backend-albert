@@ -276,7 +276,7 @@ export const createMemberFreeGroup = async(
     const data = await groupService.addMemberFreeGroups(parse.data.group_id, req?.user?.id ?? "")
 
     return res.json({
-      succes:true,
+      success:true,
       message:"success to join the groups",
       data
     })
@@ -296,7 +296,7 @@ export const deleteAssetGroup = async(
     const data = await groupService.deleteAssetGroup(id)
 
     return res.json({
-      succes:true,
+      success:true,
       message:"success delete asset group",
       data
     })

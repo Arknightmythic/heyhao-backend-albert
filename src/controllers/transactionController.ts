@@ -30,7 +30,7 @@ export const createTransaction = async (
     );
 
     return res.json({
-      succes: true,
+      success: true,
       message: "success to create transactions",
       data,
     });
@@ -142,7 +142,7 @@ export const createWithDraw = async (
     );
 
     return res.json({
-      succes: true,
+      success: true,
       message: "success to create withdraw",
       data,
     });

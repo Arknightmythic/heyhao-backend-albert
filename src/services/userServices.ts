@@ -6,6 +6,7 @@ import mailtrap from "../utils/mailtrap";
 import transport from "../utils/transport";
 
 const FRONTENDURL = process.env.FRONTEND_URL ?? "";
+const RESETPWURL = process.env.RESET_PW_URL ?? "";
 
 export const signUp = async (data: SignUpValues, file: Express.Multer.File) => {
   const IsEmailExist = await UserRepositories.IsEmailExist(data.email);
@@ -67,6 +68,11 @@ export const signin = async (data: SignInValues) => {
 };
 
 export const getEmailReset = async (email: string) => {
+  const userExists = await UserRepositories.IsEmailExist(email);
+  if (!userExists) {
+    throw new Error("Email not registered");
+  }
+
   const data = await UserRepositories.createPasswordReset(email);
 
   // await mailtrap.send({
@@ -83,7 +89,7 @@ export const getEmailReset = async (email: string) => {
     from: "albert_heyhao@test.com",
     to: email,
     subject: "Reset Password Request",
-    text: `berikut link reset password: ${FRONTENDURL}/${data.token}`,
+    text: `berikut link reset password: ${FRONTENDURL}${RESETPWURL}${data.token}`,
   });
 
   return true;

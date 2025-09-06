@@ -18,18 +18,17 @@ const uploadPhoto = multer({
 
 const uploadPhotoPaid = multer({
   storage: storageGroupPaidPhoto,
-  // fileFilter(req, file, callback) {
-  //   if(file.fieldname === 'assets'){
-  //     callback(null,true)
-  //     return
-  //   }
-    
-  //   if (file.mimetype.startsWith("image/")) {
-  //     callback(null, false);
-  //   }
-
-  //   callback(null, true);
-  // },
+  fileFilter(req, file, callback) {
+    if (file.fieldname === 'assets') {
+      // Mengizinkan semua jenis file untuk assets
+      callback(null, true);
+    } else if (file.fieldname === 'photo' && file.mimetype.startsWith("image/")) {
+      // Hanya mengizinkan file gambar untuk photo
+      callback(null, true);
+    } else {
+      callback(null, false);
+    }
+  },
 });
 
 
